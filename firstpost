@@ -1,0 +1,50 @@
+from tkinter import *
+import time
+
+offwidth = 460
+offheight = 450
+
+tk = Tk()
+canvas = Canvas(tk, width=offwidth, height=offheight)
+tk.title('Graphic')
+canvas.pack()
+
+new = canvas.create_rectangle(0, 0, 200, 200, fill="gray14")
+new1 = canvas.create_text(100, 10, fill="lawn green", font='fixedsys', text="Welcome to my GitHub page.")
+
+
+for x in range(15):
+    x = 8
+    y = 8
+    time.sleep(.08)
+    canvas.move(new, x, y)
+    canvas.update()
+
+for x in range(15):
+    x = 8
+    y = 14
+    time.sleep(.08)
+    canvas.move(new1, x, y)
+    canvas.update()
+
+
+
+
+def animate(obj):
+    xspeed = 4
+    yspeed = 5
+    while True:
+        canvas.move(obj, xspeed, yspeed)
+        tk.update()
+        print(obj)
+        tak = canvas.coords(obj)
+        if tak[3] >= offheight or tak[1] <= 0:
+            yspeed = -yspeed
+        if tak[0] >= 0 or tak[2] <= offheight:
+            xspeed = -xspeed
+        time.sleep(0.01)
+
+animate(new)
+animate(new1)
+
+canvas.mainloop()
